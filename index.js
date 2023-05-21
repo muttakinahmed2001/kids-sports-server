@@ -46,13 +46,21 @@ async function run() {
     })
 
     app.get('/toys', async (req, res) => {
-     console.log(req.query.category);
+     console.log(req.query.subCategory);
      let query = {};
-     if(req.query?.category){
-      query ={category: req.query.category}
+     if(req.query?.subCategory){
+      query ={subCategory: req.query.subCategory}
      }
       const result = await toyCollection.find(query).toArray();
       res.send(result);
+    })
+
+    app.get('/toys',async(req,res) => {
+      let query = {};
+      if(req.query?.email){
+        query={email: req.query.email}
+      }
+      const result = await toyCollection.find(query).toArray();
     })
     
      
