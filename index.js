@@ -100,15 +100,15 @@ async function run() {
         const id = req.params.id;
         const filter = { _id: new ObjectId(id) }
         // const options = { upsert: true };
-        const updatedToy = req.body
+         
         const toy = {
           $set: {
-            price: updatedToy.price, quantity: updatedToy.quantity, details: updatedToy.details
+            ...req.body
           }
         }
   
         const result = await toyCollection.updateOne(filter,toy);
-        req.send(result)
+        res.send(result)
       }
       catch {
 console.log('error')
